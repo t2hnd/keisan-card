@@ -1,11 +1,12 @@
-import './App.css';
+import React from 'react';
 
 function Input(props) {
-  let {max, count, setMax, setCount} = props
+  let { max, count, setMax, setCount, regenerateQuestions } = props
 
   function reset() {
     setMax(10);
     setCount(10);
+    regenerateQuestions(max, count);
   }
 
   function handleOnChange(event) {
@@ -15,27 +16,27 @@ function Input(props) {
 
     // console.log(`${target},${value},${name}`)
 
-    if(name === "max"){
+    if (name === "max") {
       setMax(value)
-    } 
+    }
 
-    if(name === "count"){
+    if (name === "count") {
       setCount(value)
-    } 
+    }
   }
 
   return (
     <div className="input">
       <form>
         <label>
-          Max:
-          <input type="text" name="max" value={max} onChange={handleOnChange}/>
+          いくつまで？:
+          <input type="text" name="max" value={max} onChange={handleOnChange} />
         </label>
         <label>
-          Count:
-          <input type="text" name="count" value={count} onChange={handleOnChange}/>
+          何問？:
+          <input type="text" name="count" value={count} onChange={handleOnChange} />
         </label>
-        <input type="submit" value="reset"  />
+        <input type="button" value="reset" onClick={reset} />
       </form>
     </div>
   );

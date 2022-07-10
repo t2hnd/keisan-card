@@ -1,9 +1,11 @@
-import './App.css';
+import React from 'react';
 import Result from './Result';
 
 function Card(props) {
+  const {question, updateQuestion, idx} = props
   return (
-    <li className="card" key={props.idx}>{props.pair[0]} - {props.pair[1]} = <Result pair={props.pair} idx={props.idx}/>
+    <li className="card">{question.numbers[0]} - {question.numbers[1]} = 
+    <Result question={question} updateQuestion={updateQuestion} idx={idx}/>
     </li>
   );
 }

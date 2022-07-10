@@ -1,24 +1,29 @@
-import './App.css';
-import { useState } from 'react';
+import React from 'react';
+import ResultState from './ResultState';
 
 function Result(props) {
 
-  const [resultState,setResultState] = useState('')
-  const id = `answer-props${props.idx}`
-  const result = props.pair[0] - props.pair[1]
+  const { question, updateQuestion, idx } = props;
+  const id = `answer-props${idx}`
 
-  function check(){
-    const answer = document.getElementById(id).value;
-    const newResult = Number(answer) === result ? "OK":"NG";
-    setResultState(newResult)
+  function check() {
+    const result = question.numbers[0] - question.numbers[1]
+    question.isAnswered = true
+    question.isCorrectAnswer = (Number(question.answer) === result)
+    updateQuestion(question, idx)
   }
-  // console.log(props)
+
+  function handleChange(event) {
+    question.answer = event.target.value;
+    updateQuestion(question, idx)
+  }
 
   return (
     <span>
-      <input type="text" name="answer" id={id} /> 
-      <input type="button" value="check" onClick={check}/>
-      {resultState}
+      <input type="text" name="answer" id={id} value={question.answer} onChange={handleChange} />
+      <input type="button" value="check" onClick={check} />
+      <ResultState question={question} />
+
     </span>
   );
 }

@@ -21,6 +21,8 @@
 .card {
   margin-top: 20px;
   font-size: 32pt;
+  text-align: left;
+  width: 720px
 }
 
 .card input {
